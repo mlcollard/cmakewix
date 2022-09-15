@@ -19,7 +19,7 @@ set(CPACK_PACKAGE_EXECUTABLES Greeting)
 # desktop links
 set(CPACK_CREATE_DESKTOP_LINKS "${CPACK_PACKAGE_NAME}")
 
-set(CPACK_PACKAGE_FILE_NAME "Greeting")
+set(CPACK_PACKAGE_FILE_NAME "Greeting-Win")
 if(MSVC)
     set(CPACK_GENERATOR "WIX")
 endif()
