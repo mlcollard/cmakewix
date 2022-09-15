@@ -1,0 +1,90 @@
+---
+name: Test
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Windows
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Setup devcmd to use cl.exe
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Create build directory
+        shell: bash
+        run: |
+          cmake --version
+          mkdir build
+          $VCPKG_ROOT/vcpkg list
+
+      - name: CMake Setup on Windows
+        shell: bash
+        working-directory: build
+        run: |
+          cmake .. -G Ninja
+
+      - name: Build
+        shell: bash
+        working-directory: build
+        continue-on-error: true
+        run: |
+          export UseMultiToolTask=true
+          cmake --build . --config Release
+
+      - name: Package
+        working-directory: build
+        continue-on-error: true
+        run: |
+          cpack -V
+      - uses: actions/upload-artifact@v3
+        with:
+          name: wix.log
+          path: build/dist/_CPack_Packages/win64/WIX/wix.log
+      - uses: actions/upload-artifact@v3
+        with:
+          name: srcML-Win
+          path: build/dist/srcML-Win.msi
+      - uses: actions/upload-artifact@v3
+        with:
+          name: CPack
+          path: build/dist/_CPack_Packages/
+
+      - name: Install package
+        working-directory: build/dist
+        continue-on-error: true
+        run: msiexec /i D:\a\srcML\srcML\build\dist\srcML-Win.msi /quiet /norestart /L*vx .\msi.log
+      - uses: actions/upload-artifact@v3
+        with:
+          name: msi.log
+          path: build/dist/msi.log
+
+      - name: Clean build
+        working-directory: build
+        continue-on-error: true
+        run: |
+          cmake --build . --config Release --target clean
+          cmake . -DSRCML_TEST_INSTALLED=ON
+
+      - name: Set PATH for Windows
+        shell: bash
+        working-directory: build
+        continue-on-error: true
+        run: |
+          echo "/c/Program Files/srcML/bin" >> $GITHUB_PATH
+
+      - name: Run Installed srcml
+        shell: bash
+        working-directory: build
+        continue-on-error: true
+        run: |
+          EOL="\r\n"
+          export PATH=$PATH:"/c/Program Files/Greeting/bin"
+          Greeting
