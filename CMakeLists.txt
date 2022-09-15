@@ -29,5 +29,7 @@ set(CPACK_WIX_EXTRA_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/srcml_extra_dialog.wxs"
 
 set(CPACK_WIX_PATCH_FILE "${CMAKE_CURRENT_SOURCE_DIR}/patch_path_env.xml")
 
+include(InstallRequiredSystemLibraries)
+
 # needs to be last so not overwritten
 include(CPack)
