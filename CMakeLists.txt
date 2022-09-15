@@ -14,6 +14,8 @@ if(MSVC)
     set(CPACK_GENERATOR "WIX")
 endif()
 
+set(CPACK_WIX_UI_REF "CMakeUI_InstallDir")
+
 # summary
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Greeting")
 
@@ -25,7 +27,7 @@ set(CPACK_PACKAGE_DIRECTORY ${CMAKE_BINARY_DIR}/dist)
 # directory name
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "Greeting")
 
-set(CPACK_WIX_EXTRA_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/srcml_extra_dialog.wxs")
+set(CPACK_WIX_EXTRA_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/srcml_extra_dialog.wxs" "${CMAKE_CURRENT_SOURCE_DIR}/install_dir.wxs")
 
 set(CPACK_WIX_PATCH_FILE "${CMAKE_CURRENT_SOURCE_DIR}/patch_path_env.xml")
 
