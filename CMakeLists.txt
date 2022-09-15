@@ -16,6 +16,8 @@ endif()
 
 set(CPACK_WIX_UI_REF "CMakeUI_InstallDir")
 
+set(CPACK_WIX_CMAKE_PACKAGE_REGISTRY srcML)
+
 # summary
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Greeting")
 
