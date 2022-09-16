@@ -88,6 +88,7 @@ jobs:
           export PATH=$PATH:"/c/Program Files/Greeting/bin"
           ls -lh "/c/Program Files/Greeting"
           Greeting
+          reg query "HKEY_LOCAL_MACHINE\Software\Kitware\CMake\Packages\srcML"
 
       - name: Uninstall the package
         working-directory: build/dist
@@ -105,6 +106,6 @@ jobs:
         run: |
           EOL="\r\n"
           export PATH=$PATH:"/c/Program Files/Greeting/bin"
-          Greeting
-          ls -lh "/c/Program Files/Greeting"
           reg query "HKEY_LOCAL_MACHINE\Software\Kitware\CMake\Packages\srcML"
+          ls -lh "/c/Program Files/Greeting"
+          Greeting
