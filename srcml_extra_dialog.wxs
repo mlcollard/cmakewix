@@ -21,9 +21,9 @@
 
 				<Control Id="ADD_SRCML_TO_PATHOption" Type="RadioButtonGroup" X="26" Y="100" Width="305" Height="65" Property="ADD_SRCML_TO_PATH">
 					<RadioButtonGroup Property="ADD_SRCML_TO_PATH">
-                        <RadioButton Value="System" X="0" Y="20" Width="295" Height="16" Text="Add srcML to the system PATH for all users"/>
-                        <RadioButton Value="User" X="0" Y="40" Width="295" Height="16" Text="Add srcML to the system PATH for the current user"/>
-						<RadioButton Value="None" X="0" Y="0" Width="295" Height="16" Text="Do not add srcML to the system PATH"/>
+                        <RadioButton Value="System" X="0" Y="0" Width="295" Height="16" Text="Add srcML to the system PATH for all users"/>
+                        <RadioButton Value="User" X="0" Y="20" Width="295" Height="16" Text="Add srcML to the system PATH for the current user"/>
+						<RadioButton Value="None" X="0" Y="40" Width="295" Height="16" Text="Do not add srcML to the system PATH"/>
 					</RadioButtonGroup>
 				</Control>
 			</Dialog>
