@@ -6,6 +6,7 @@
 
       <Environment Id="srcMLSystemPathEntryENV" Action="set" Part="last"
         Name="PATH" Value="[INSTALL_ROOT]bin"
+        Permanent="no"
         System="yes"/>
     </Component>
 
@@ -15,6 +16,7 @@
 
       <Environment Id="srcMLUserPathEntryENV" Action="set" Part="last"
         Name="PATH" Value="[INSTALL_ROOT]bin"
+        Permanent="no"
         System="no"/>
     </Component>
   </CPackWiXFragment>

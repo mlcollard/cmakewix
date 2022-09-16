@@ -86,4 +86,24 @@ jobs:
         run: |
           EOL="\r\n"
           export PATH=$PATH:"/c/Program Files/Greeting/bin"
+          ls -lh "/c/Program Files/Greeting"
           Greeting
+
+      - name: Uninstall the package
+        working-directory: build/dist
+        continue-on-error: true
+        run: msiexec /x D:\a\cmakewix\cmakewix\build\dist\Greeting-Win.msi /quiet /norestart /L*vx .\msi_uninstall.log
+      - uses: actions/upload-artifact@v3
+        with:
+          name: msi_uninstall.log
+          path: build/dist/msi_uninstall.log
+
+      - name: Verify it will not run
+        shell: bash
+        working-directory: build
+        continue-on-error: true
+        run: |
+          EOL="\r\n"
+          export PATH=$PATH:"/c/Program Files/Greeting/bin"
+          Greeting
+          ls -lh "/c/Program Files/Greeting"
