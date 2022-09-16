@@ -14,7 +14,7 @@ if(MSVC)
     set(CPACK_GENERATOR "WIX")
 endif()
 
-set(CPACK_WIX_UI_REF "CMakeUI_InstallDir")
+set(CPACK_WIX_UI_REF "srcMLUI_InstallDir")
 
 set(CPACK_WIX_CMAKE_PACKAGE_REGISTRY srcML)
 
