@@ -85,7 +85,7 @@ jobs:
         continue-on-error: true
         run: |
           EOL="\r\n"
-          export PATH=$PATH:"/c/Program Files/Greeting/bin"
+          echo $PATH
           ls -lh "/c/Program Files/Greeting"
           Greeting
           reg query "HKEY_LOCAL_MACHINE\Software\Kitware\CMake\Packages\srcML"
@@ -105,7 +105,8 @@ jobs:
         continue-on-error: true
         run: |
           EOL="\r\n"
-          export PATH=$PATH:"/c/Program Files/Greeting/bin"
+          echo $PATH
           reg query "HKEY_LOCAL_MACHINE\Software\Kitware\CMake\Packages\srcML"
           ls -lh "/c/Program Files/Greeting"
           Greeting
+          echo $PATH
