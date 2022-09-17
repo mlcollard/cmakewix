@@ -70,7 +70,9 @@ jobs:
         continue-on-error: true
         run: |
           cmake --build . --config Release --target clean
-          cmake . -DSRCML_TEST_INSTALLED=ON
+          cmake .
+
+      # cmake . -DSRCML_TEST_INSTALLED=ON
 
       # - name: Set PATH for Windows
       #   shell: bash
@@ -79,15 +81,29 @@ jobs:
       #   run: |
       #     echo "/c/Program Files/Greeting/bin" >> $GITHUB_PATH
 
-      - name: Run Installed srcml
+      - name: Run Installed srcml in bash
         shell: bash
         working-directory: build
         continue-on-error: true
         run: |
           EOL="\r\n"
           echo $PATH
-          ls -lh "/c/Program Files/Greeting"
+          ls -lh "/c/Program Files/Greeting/bin"
           Greeting
+
+      - name: Run Installed srcml in Powershell
+        working-directory: build
+        continue-on-error: true
+        run: |
+          EOL="\r\n"
+          Greeting.exe
+
+      - name: Check registry
+        shell: bash
+        working-directory: build
+        continue-on-error: true
+        run: |
+          EOL="\r\n"
           reg query "HKEY_LOCAL_MACHINE\Software\Kitware\CMake\Packages\srcML"
 
       - name: Uninstall the package
