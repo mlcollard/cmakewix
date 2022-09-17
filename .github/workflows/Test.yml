@@ -59,7 +59,7 @@ jobs:
       - name: Install package
         working-directory: build/dist
         continue-on-error: true
-        run: msiexec /i D:\a\cmakewix\cmakewix\build\dist\Greeting-Win.msi /quiet /norestart /L*vx .\msi.log ADD_SRCML_TO_PATH=System
+        run: msiexec /i D:\a\cmakewix\cmakewix\build\dist\Greeting-Win.msi /quiet /norestart /L*vx .\msi.log ADD_SRCML_TO_PATH=System LOGVERBOSE=1
       - uses: actions/upload-artifact@v3
         with:
           name: msi.log
