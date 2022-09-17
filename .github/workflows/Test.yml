@@ -59,7 +59,10 @@ jobs:
       - name: Install package
         working-directory: build/dist
         continue-on-error: true
-        run: msiexec /i D:\a\cmakewix\cmakewix\build\dist\Greeting-Win.msi /quiet /norestart /L*vx .\msi.log ADD_SRCML_TO_PATH=User LOGVERBOSE=1
+        run: |
+          Get-ChildItem Env:
+          msiexec /i D:\a\cmakewix\cmakewix\build\dist\Greeting-Win.msi /quiet /norestart /L*vx .\msi.log ADD_SRCML_TO_PATH=User LOGVERBOSE=1
+          Get-ChildItem Env:
       - uses: actions/upload-artifact@v3
         with:
           name: msi.log
@@ -95,6 +98,7 @@ jobs:
         working-directory: build
         continue-on-error: true
         run: |
+          Get-ChildItem Env:
           Greeting.exe
 
       - name: Check registry
