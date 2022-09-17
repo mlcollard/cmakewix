@@ -95,7 +95,6 @@ jobs:
         working-directory: build
         continue-on-error: true
         run: |
-          EOL="\r\n"
           Greeting.exe
 
       - name: Check registry
