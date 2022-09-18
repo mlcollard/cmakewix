@@ -61,12 +61,8 @@ jobs:
         continue-on-error: true
         run: |
           $Env:Path
-          [Environment]::GetEnvironmentVariable("Path","User")
-          [Environment]::GetEnvironmentVariable("Path","System")
           msiexec /i D:\a\cmakewix\cmakewix\build\dist\Greeting-Win.msi /quiet /norestart /L*vx .\msi.log ADD_SRCML_TO_PATH=User LOGVERBOSE=1
           $Env:Path
-          [Environment]::GetEnvironmentVariable("Path","User")
-          [Environment]::GetEnvironmentVariable("Path","System")
 
       - uses: actions/upload-artifact@v3
         with:
@@ -104,8 +100,6 @@ jobs:
         continue-on-error: true
         run: |
           $Env:Path
-          [Environment]::GetEnvironmentVariable("Path","User")
-          [Environment]::GetEnvironmentVariable("Path","System")
           Greeting.exe
 
       - name: Check registry
