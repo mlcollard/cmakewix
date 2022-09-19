@@ -1,5 +1,4 @@
 <CPackWiXPatch>
   <CPackWiXFragment Id="#PRODUCT">
-    <Package InstallScope="perMachine"/>
   </CPackWiXFragment>
 </CPackWiXPatch>
