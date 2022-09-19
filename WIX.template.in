@@ -2,7 +2,7 @@
 
 <?include "cpack_variables.wxi"?>
 
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" @CPACK_WIX_CUSTOM_XMLNS_EXPANDED@
     RequiredVersion="3.6.3303.0">
 
     <Product Id="$(var.CPACK_WIX_PRODUCT_GUID)"
@@ -38,18 +38,7 @@
         <WixVariable Id="WixUIDialogBmp" Value="$(var.CPACK_WIX_UI_DIALOG)"/>
         <?endif?>
 
-        <DirectoryRef Id="TARGETDIR">
-            <Component Id="CMakeRegistry">
-                <RegistryKey Root="HKLM" Key="Software\Kitware\CMake">
-                    <RegistryValue Type="string" Name="InstallDir"
-                        Value="[INSTALL_ROOT]" KeyPath="yes"/>
-                 </RegistryKey>
-            </Component>
-        </DirectoryRef>
-
-        <FeatureRef Id="ProductFeature">
-            <ComponentRef Id="CMakeRegistry"/>
-        </FeatureRef>
+        <FeatureRef Id="ProductFeature"/>
 
         <UIRef Id="$(var.CPACK_WIX_UI_REF)" />
 
