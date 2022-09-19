@@ -4,7 +4,7 @@ project(Greeting)
 
 add_executable(Greeting Greeting.cpp)
 
-install(TARGETS Greeting DESTINATION bin)
+install(TARGETS Greeting DESTINATION bin COMPONENT SRCML)
 
 # Package name
 set(CPACK_PACKAGE_NAME "Greeting")
