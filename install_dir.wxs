@@ -8,10 +8,7 @@
 			<Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
 			<Property Id="WixUI_Mode" Value="InstallDir" />
 
-			<DialogRef Id="CMakeExtraDialog" />
-			<?ifdef CHECK_NSIS ?>
-				<DialogRef Id="CMakeNsisOverwriteDialog" />
-			<?endif ?>
+			<DialogRef Id="srcMLExtraDialog" />
 
 			<DialogRef Id="BrowseDlg" />
 			<DialogRef Id="DiskCostDlg" />
@@ -33,22 +30,18 @@
 			<Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">Installed AND PATCH</Publish>
 
 			<Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
-			<Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="CMakeExtraDialog">LicenseAccepted = "1"</Publish>
+			<Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="srcMLExtraDialog">LicenseAccepted = "1"</Publish>
 
-			<Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="CMakeExtraDialog">1</Publish>
+			<Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="srcMLExtraDialog">1</Publish>
 			<Publish Dialog="InstallDirDlg" Control="Next" Event="SetTargetPath" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
 			<Publish Dialog="InstallDirDlg" Control="Next" Event="DoAction" Value="WixUIValidatePath" Order="2">NOT WIXUI_DONTVALIDATEPATH</Publish>
 			<Publish Dialog="InstallDirDlg" Control="Next" Event="SpawnDialog" Value="InvalidDirDlg" Order="3"><![CDATA[NOT WIXUI_DONTVALIDATEPATH AND WIXUI_INSTALLDIR_VALID<>"1"]]></Publish>
-			<?ifdef CHECK_NSIS ?>
-				<Publish Dialog="InstallDirDlg" Control="Next" Event="DoAction" Value="CMakeDetectNsisOverwrite" Order="4">1</Publish>
-				<Publish Dialog="InstallDirDlg" Control="Next" Event="SpawnDialog" Value="CMakeNsisOverwriteDialog" Order="5">CMAKE_NSIS_OVERWRITE_DETECTED="1"</Publish>
-			<?endif ?>
 			<Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg" Order="6"><![CDATA[(WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1") AND CMAKE_NSIS_OVERWRITE_DETECTED<>1]]></Publish>
 			<Publish Dialog="InstallDirDlg" Control="ChangeFolder" Property="_BrowseProperty" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
 			<Publish Dialog="InstallDirDlg" Control="ChangeFolder" Event="SpawnDialog" Value="BrowseDlg" Order="2">1</Publish>
 
-			<Publish Dialog="CMakeExtraDialog" Control="Back" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
-			<Publish Dialog="CMakeExtraDialog" Control="Next" Event="NewDialog" Value="InstallDirDlg">1</Publish>
+			<Publish Dialog="srcMLExtraDialog" Control="Back" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
+			<Publish Dialog="srcMLExtraDialog" Control="Next" Event="NewDialog" Value="InstallDirDlg">1</Publish>
 
 			<Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="InstallDirDlg" Order="1">NOT Installed</Publish>
 			<Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="2">Installed AND NOT PATCH</Publish>
@@ -64,9 +57,5 @@
 		</UI>
 
 		<UIRef Id="WixUI_Common" />
-
-		<?ifdef CHECK_NSIS ?>
-			<CustomAction Id="CMakeDetectNsisOverwrite" BinaryKey="CMakeCustomActionsDll" DllEntry="DetectNsisOverwrite"/>
-		<?endif ?>
 	</Fragment>
 </Wix>
