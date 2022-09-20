@@ -6,6 +6,8 @@ add_executable(Greeting Greeting.cpp)
 
 install(TARGETS Greeting DESTINATION bin)
 
+install(FILES blank.hpp DESTINATION include)
+
 # Package name
 set(CPACK_PACKAGE_NAME "Greeting")
 
