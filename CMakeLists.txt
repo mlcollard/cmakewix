@@ -4,9 +4,9 @@ project(Greeting)
 
 add_executable(Greeting Greeting.cpp)
 
-install(TARGETS Greeting DESTINATION bin)
+install(TARGETS Greeting DESTINATION bin COMPONENT SRCML)
 
-install(FILES blank.hpp DESTINATION include)
+install(FILES blank.hpp DESTINATION include COMPONENT SRCML)
 
 # Package name
 set(CPACK_PACKAGE_NAME "Greeting")
@@ -43,7 +43,7 @@ set(CPACK_WIX_PATCH_FILE "${CMAKE_CURRENT_SOURCE_DIR}/patch_path_env.xml;${CMAKE
 
 set(CPACK_WIX_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/WIX.template.in")
 
-# set(CMAKE_INSTALL_SYSTEM_RUNTIME_COMPONENT SRCML)
+set(CMAKE_INSTALL_SYSTEM_RUNTIME_COMPONENT SRCML)
 
 include(InstallRequiredSystemLibraries)
 
