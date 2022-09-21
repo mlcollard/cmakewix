@@ -45,6 +45,17 @@ set(CPACK_WIX_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/WIX.template.in")
 
 set(CMAKE_INSTALL_SYSTEM_RUNTIME_COMPONENT SRCML)
 
+# add examples
+file(GLOB EXAMPLES "examples/srcml_*.c")
+
+message("EXAMPLES: ${EXAMPLES}")
+
+# add one-by-one to avoid problems with long lists
+foreach(EXAMPLE ${EXAMPLES})
+    message("SETUP INSTALL FOR: ${EXAMPLE}")
+    install(FILES "${EXAMPLE}" DESTINATION share/srcml/examples COMPONENT EXAMPLES)
+endforeach()
+
 include(InstallRequiredSystemLibraries)
 
 # needs to be last so not overwritten
