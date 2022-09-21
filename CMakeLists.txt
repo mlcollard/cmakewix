@@ -46,7 +46,7 @@ set(CPACK_WIX_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/WIX.template.in")
 set(CMAKE_INSTALL_SYSTEM_RUNTIME_COMPONENT SRCML)
 
 # add examples
-file(GLOB EXAMPLES "examples/srcml_create_archive_*.c")
+file(GLOB EXAMPLES "examples/srcml_create_archive_file*.c")
 
 message("EXAMPLES: ${EXAMPLES}")
 
